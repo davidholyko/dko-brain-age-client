@@ -19,11 +19,21 @@ class QuestionController extends Component {
   }
 
   render () {
+    const { incrementQuestionCount, answerQuestionCorrectly } = this.props
+
     const questions = [
-      <QuestionMath key="1" />,
-      <QuestionWords key="2"/>,
-      <QuestionShapes key="4" />,
-      <QuestionSentence key="4"/>
+      <QuestionMath key="1"
+        incrementQuestionCount={incrementQuestionCount}
+        answerQuestionCorrectly={answerQuestionCorrectly} />,
+      <QuestionWords key="2"
+        incrementQuestionCount={incrementQuestionCount}
+        answerQuestionCorrectly={answerQuestionCorrectly} />,
+      <QuestionShapes key="4"
+        incrementQuestionCount={incrementQuestionCount}
+        answerQuestionCorrectly={answerQuestionCorrectly} />,
+      <QuestionSentence key="4"
+        incrementQuestionCount={incrementQuestionCount}
+        answerQuestionCorrectly={answerQuestionCorrectly} />
     ]
     return (
       <div className="d-flex flex-column justify-content-center game bg-primary">

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 // import { withRouter } from 'react-router-dom'
 
 import { knuthShuffle } from 'knuth-shuffle'
@@ -13,6 +13,16 @@ class QuestionShapes extends Component {
       question: [],
       answer: '',
       multipleChoice: []
+    }
+  }
+
+  handleClick = () => {
+    const { answerQuestionCorrectly, incrementQuestionCount } = this.props
+    if (event.target.textContent === this.state.answer) {
+      answerQuestionCorrectly()
+      incrementQuestionCount()
+    } else {
+      incrementQuestionCount()
     }
   }
 
@@ -45,17 +55,24 @@ class QuestionShapes extends Component {
   }
 
   render () {
-    const { question, answer, multipleChoice } = this.state
+    const { question, multipleChoice } = this.state
     return (
-      <div className="d-flex flex-column justify-content-center bg-danger game">
-        <Fragment></Fragment>
-        <div className="d-flex flex-wrap">
-          {question.map(shape => <img key={shape + Math.random()} src={icons[shape]} alt=""/>)}
+      <div className="game">
+        <div className="shapes">
+          {question.map(shape => <img
+            className="shape"
+            key={shape + Math.random()}
+            src={icons[shape]}
+            alt=""/>)}
         </div>
-        <h1>{answer}</h1>
-        <div className="d-flex flex-wrap">
+        <div className="question-buttons">
           {multipleChoice.map(choice => (
-            <h1 key={choice + Math.random()} className="bg-warning px-2 mx-2 rounded">{choice}</h1>
+            <button
+              key={choice + Math.random()}
+              onClick={this.handleClick}
+              className="btn-question">
+              {choice}
+            </button>
           ))}
         </div>
 

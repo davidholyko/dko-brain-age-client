@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 // import { withRouter } from 'react-router-dom'
 
 import { knuthShuffle } from 'knuth-shuffle'
@@ -53,16 +53,28 @@ class QuestionMath extends Component {
     this.generateProblem()
   }
 
+  handleClick = () => {
+    const { answerQuestionCorrectly, incrementQuestionCount } = this.props
+    if (event.target.textContent === this.state.answer) {
+      answerQuestionCorrectly()
+      incrementQuestionCount()
+    } else {
+      incrementQuestionCount()
+    }
+  }
+
   render () {
-    const { question, answer, multipleChoice } = this.state
+    const { question, multipleChoice } = this.state
     return (
-      <div className="d-flex flex-column justify-content-center game bg-primary">
-        <Fragment></Fragment>
+      <div className="game">
         <h1>{question}</h1>
-        <h1>{answer}</h1>
-        <div className="d-flex">
+        <div className="question-buttons">
           {multipleChoice.map((item, index) => (
-            <h1 key={item + index + Math.random()} className="bg-success px-2 mx-2 rounded">{item}</h1>)
+            <button key={item + index + Math.random()}
+              onClick={this.handleClick}
+              className="btn-question">
+              {item}
+            </button>)
           )}
         </div>
       </div>

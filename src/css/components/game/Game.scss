@@ -4,4 +4,33 @@
   background-color: #777;
   color: white;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  background: #D94;
+  justify-content: space-between;
+}
+
+.btn-question {
+  width: 25%;
+  border-radius: 0.5rem;
+  background-color: #444;
+  color: white;
+  padding: 1rem 2rem;
+  margin: 0.5rem 1rem;
+  font-size: 2rem;
+}
+
+.question-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.shapes {
+  display: flex;
+  justify-content: space-around;
+}
+
+.shape {
+  width: 20%;
+  height: 20%;
 }

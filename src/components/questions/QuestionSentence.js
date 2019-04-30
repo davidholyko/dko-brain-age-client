@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 // import { withRouter } from 'react-router-dom'
 
 import { knuthShuffle } from 'knuth-shuffle'
@@ -72,25 +72,36 @@ class QuestionSentence extends Component {
     this.generateProblem()
   }
 
+  handleClick = () => {
+    const { answerQuestionCorrectly, incrementQuestionCount } = this.props
+    if (event.target.textContent === this.state.answer.word) {
+      answerQuestionCorrectly()
+      incrementQuestionCount()
+    } else {
+      incrementQuestionCount()
+    }
+  }
+
   render () {
-    const { question, answer, answerIndex, multipleChoice } = this.state
+    const { question, answerIndex, multipleChoice } = this.state
     const s = answerIndex === 1 ? '' : 's'
 
-    console.log(this)
-
     return (
-      <div className="d-flex flex-column justify-content-center game bg-warning">
-        <Fragment></Fragment>
+      <div className="game">
         <h1 className="bg-dark">Which word appears {answerIndex} time{s}?</h1>
         <div className="d-flex flex-wrap justify-content-center">
           {question.split(' ').map((item, index) => (
             <h1 key={item + index} className="bg-success px-2 m-0">{item}</h1>)
           )}
         </div>
-        <h1 className="bg-info">{answer.word}</h1>
-        <div className="d-flex">
+        <div className="question-buttons">
           {multipleChoice.map((item, index) => (
-            <h1 key={item + index} className="bg-success px-2 mx-2 rounded">{item}</h1>)
+            <button
+              key={item + index}
+              onClick={this.handleClick}
+              className="btn-question">
+              {item}
+            </button>)
           )}
         </div>
 
