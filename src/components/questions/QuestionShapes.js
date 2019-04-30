@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react'
 import { knuthShuffle } from 'knuth-shuffle'
 import { icons } from '../../data/icons/Icons'
 
-class ShapesQuestion extends Component {
+class QuestionShapes extends Component {
   constructor () {
     super()
 
@@ -64,4 +64,4 @@ class ShapesQuestion extends Component {
   }
 }
 
-export default ShapesQuestion
+export default QuestionShapes

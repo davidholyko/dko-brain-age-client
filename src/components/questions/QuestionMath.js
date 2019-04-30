@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react'
 
 import { knuthShuffle } from 'knuth-shuffle'
 
-class MathQuestion extends Component {
+class QuestionMath extends Component {
   constructor () {
     super()
 
@@ -71,4 +71,4 @@ class MathQuestion extends Component {
   }
 }
 
-export default MathQuestion
+export default QuestionMath

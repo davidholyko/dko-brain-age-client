@@ -1,10 +1,7 @@
 import React, { Component, Fragment } from 'react'
 // import { withRouter } from 'react-router-dom'
 
-import MathQuestion from '../questions/MathQuestion'
-import WordsQuestion from '../questions/WordsQuestion'
-import ShapesQuestion from '../questions/ShapesQuestion'
-import SentenceQuestion from '../questions/SentenceQuestion'
+import QuestionController from '../questions/QuestionController'
 
 class Game extends Component {
   constructor () {
@@ -23,13 +20,8 @@ class Game extends Component {
         <Fragment></Fragment>
         <h1 className="text-center">Game goes here</h1>
         <div className="game">
-          <h1>Question here</h1>
-          <MathQuestion />
-          <WordsQuestion />
-          <ShapesQuestion />
-          <SentenceQuestion />
+          <QuestionController />
         </div>
-
       </div>
     )
   }
