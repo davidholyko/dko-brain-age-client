@@ -36,13 +36,13 @@ class MathQuestion extends Component {
       words.splice(randomIndex, 1)
     }
 
-    question = knuthShuffle(question.slice(0))
-    multipleChoice = knuthShuffle(multipleChoice.slice(0))
-
     const answerIndex = Math.random() * 5 | 0
     const answer = multipleChoice[answerIndex]
 
-    this.setState({ question, multipleChoice, answer })
+    question = knuthShuffle(question.slice(0))
+    multipleChoice = knuthShuffle(multipleChoice.slice(0))
+
+    this.setState({ question, multipleChoice, answer, answerIndex })
   }
 
   componentDidMount () {
@@ -50,11 +50,14 @@ class MathQuestion extends Component {
   }
 
   render () {
-    const { question, answer, multipleChoice } = this.state
+    const { question, answer, answerIndex, multipleChoice } = this.state
+    const s = answerIndex === 1 ? '' : 's'
+
     return (
       <div className="d-flex flex-column justify-content-center">
         <Fragment></Fragment>
-        <div className="d-flex">
+        <h1 className="bg-dark">Which word appears {answerIndex} time{s}?</h1>
+        <div className="d-flex flex-wrap">
           {question.map((item, index) => (
             <h1 key={item + index} className="bg-success px-2 mx-2 rounded">{item}</h1>)
           )}

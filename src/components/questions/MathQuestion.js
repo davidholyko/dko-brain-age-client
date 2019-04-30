@@ -63,7 +63,7 @@ class MathQuestion extends Component {
           <h1>{answer}</h1>
           <div className="d-flex">
             {multipleChoice.map((item, index) => (
-              <h1 key={item + index} className="bg-success px-2 mx-2 rounded">{item}</h1>)
+              <h1 key={item + index + Math.random()} className="bg-success px-2 mx-2 rounded">{item}</h1>)
             )}
           </div>
         </div>
