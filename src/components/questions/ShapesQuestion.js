@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 // import { withRouter } from 'react-router-dom'
 
-// import { knuthShuffle } from 'knuth-shuffle'
+import { knuthShuffle } from 'knuth-shuffle'
 import { icons } from '../../data/icons/Icons'
 
 class ShapesQuestion extends Component {
@@ -19,15 +19,23 @@ class ShapesQuestion extends Component {
   generateProblem = () => {
     const { shapes } = this.state
     const startIndex = Math.random * 2 | 0
-    const multipleChoice = []
+    const question = []
+    let multipleChoice = []
 
-    for (let i = 0; i < 5; i++) multipleChoice.push(shapes[startIndex + i])
+    for (let i = 0; i < 5; i++) question.push(shapes[startIndex + i])
 
-    const randomIndex = Math.random() * multipleChoice.length | 0
-    const answer = multipleChoice[randomIndex]
-    multipleChoice[randomIndex] = 'question'
+    const randomIndex = Math.random() * question.length | 0
+    const answer = question[randomIndex]
+    question[randomIndex] = 'question'
 
-    const question = multipleChoice
+    for (let i = 0; i < 5; i++) {
+      let currentShapes = shapes
+      const random = Math.random() * currentShapes.length | 0
+      multipleChoice.push(currentShapes[random])
+      currentShapes = currentShapes.splice(random, 1)
+    }
+
+    multipleChoice = knuthShuffle(multipleChoice.slice(0))
 
     this.setState({ answer, question, multipleChoice })
   }
