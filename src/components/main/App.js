@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
+// always on
 import Header from './Header'
 
+// auth routes
 import AuthenticatedRoute from '../auth/AuthenticatedRoute'
 import SignUp from '../auth/SignUp'
 import SignIn from '../auth/SignIn'
 import SignOut from '../auth/SignOut'
 import ChangePassword from '../auth/ChangePassword'
 
-import Alert from 'react-bootstrap/Alert'
+// alert
+import { AlertList } from 'react-bs-notifier'
+
+// game routes
+import Game from '../game/Game'
 
 class App extends Component {
   constructor () {
@@ -17,7 +23,9 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      timeout: 2000,
+      position: 'bottom-left'
     }
   }
 
@@ -25,23 +33,42 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
-  alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] })
+  alert = (message, type, headline = '', timeout = 2000) => {
+    const newAlert = {
+      id: (new Date()).getTime(),
+      type: type,
+      headline: headline,
+      message: message
+    }
+
+    this.setState(prevState => ({
+      alerts: [...prevState.alerts, newAlert]
+    }), () => {
+      setTimeout(() => {
+        const index = this.state.alerts.indexOf(newAlert)
+        if (index >= 0) {
+          this.setState(prevState => ({
+            // remove the alert from the array
+            alerts: [...prevState.alerts.slice(0, index), ...prevState.alerts.slice(index + 1)]
+          }))
+        }
+      }, timeout)
+    })
   }
 
   render () {
-    const { alerts, user } = this.state
+    const { alerts, user, timeout, position } = this.state
 
     return (
       <React.Fragment>
         <Header user={user} />
-        {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
-        ))}
+
+        <AlertList
+          position={position}
+          alerts={alerts}
+          timeout={timeout}
+        />
+
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
@@ -54,6 +81,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <Route exact path='/' render={() => (
+            <Game alert={this.alert} setUser={this.setUser} />
           )} />
         </main>
       </React.Fragment>

@@ -20,7 +20,6 @@ $charcoal: #bbb;
   flex-grow: 1;
   justify-content: flex-end;
 }
-
 @media (max-width: 600px) {
   .main-header {
     flex-direction: column;
@@ -33,7 +32,6 @@ $charcoal: #bbb;
     }
   }
 }
-
 @media (max-width: 450px) {
   .main-header > nav {
     flex-direction: column;
