@@ -56,19 +56,17 @@ class MathQuestion extends Component {
   render () {
     const { question, answer, multipleChoice } = this.state
     return (
-      <div className="d-flex flex-column justify-content-center">
+      <div className="d-flex flex-column justify-content-center game bg-primary">
         <Fragment></Fragment>
-        <div className="game">
-          <h1>{question}</h1>
-          <h1>{answer}</h1>
-          <div className="d-flex">
-            {multipleChoice.map((item, index) => (
-              <h1 key={item + index + Math.random()} className="bg-success px-2 mx-2 rounded">{item}</h1>)
-            )}
-          </div>
+        <h1>{question}</h1>
+        <h1>{answer}</h1>
+        <div className="d-flex">
+          {multipleChoice.map((item, index) => (
+            <h1 key={item + index + Math.random()} className="bg-success px-2 mx-2 rounded">{item}</h1>)
+          )}
         </div>
-
       </div>
+
     )
   }
 }

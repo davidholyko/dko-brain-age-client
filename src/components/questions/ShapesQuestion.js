@@ -47,7 +47,7 @@ class ShapesQuestion extends Component {
   render () {
     const { question, answer, multipleChoice } = this.state
     return (
-      <div className="d-flex flex-column justify-content-center bg-danger">
+      <div className="d-flex flex-column justify-content-center bg-danger game">
         <Fragment></Fragment>
         <div className="d-flex flex-wrap">
           {question.map(shape => <img key={shape + Math.random()} src={icons[shape]} alt=""/>)}

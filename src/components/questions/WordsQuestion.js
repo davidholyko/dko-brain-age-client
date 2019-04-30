@@ -24,22 +24,24 @@ class MathQuestion extends Component {
     for (let i = 0; i < 5; i++) {
       // get random index
       const randomIndex = Math.random() * words.length | 0
-      // get random word
+      // get random word using the random index
       const randomWord = words[randomIndex]
-      // add word into multiple choice array
+      // add random word into multiple choice array
       multipleChoice.push(randomWord)
-
       // push word into question array i number of times
       for (let x = 0; x < i; x++) question.push(randomWord)
-
       // removes selected word from words array to prevent duplicates
       words.splice(randomIndex, 1)
     }
 
+    // select random index
     const answerIndex = Math.random() * 5 | 0
+    // set the answer to that value
     const answer = multipleChoice[answerIndex]
 
+    // shuffle question
     question = knuthShuffle(question.slice(0))
+    // shuffle multipleChoice
     multipleChoice = knuthShuffle(multipleChoice.slice(0))
 
     this.setState({ question, multipleChoice, answer, answerIndex })
@@ -54,7 +56,7 @@ class MathQuestion extends Component {
     const s = answerIndex === 1 ? '' : 's'
 
     return (
-      <div className="d-flex flex-column justify-content-center">
+      <div className="d-flex flex-column justify-content-center game">
         <Fragment></Fragment>
         <h1 className="bg-dark">Which word appears {answerIndex} time{s}?</h1>
         <div className="d-flex flex-wrap">

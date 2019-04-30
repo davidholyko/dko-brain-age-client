@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react'
 import MathQuestion from '../questions/MathQuestion'
 import WordsQuestion from '../questions/WordsQuestion'
 import ShapesQuestion from '../questions/ShapesQuestion'
+import SentenceQuestion from '../questions/SentenceQuestion'
 
 class Game extends Component {
   constructor () {
@@ -26,6 +27,7 @@ class Game extends Component {
           <MathQuestion />
           <WordsQuestion />
           <ShapesQuestion />
+          <SentenceQuestion />
         </div>
 
       </div>
