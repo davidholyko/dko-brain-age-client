@@ -1,6 +1,6 @@
 {
   "name": "dko-react-boilerplate",
-  "homepage": "https://davidholyko.github.io/<REPO NAME>",
+  "homepage": "https://davidholyko.github.io/dko-brain-age-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
